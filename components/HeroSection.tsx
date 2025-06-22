@@ -95,7 +95,7 @@ export default function HeroSection() {
                                 </div>
 
                                 <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight">
-                                    <span className="block">Hi, I'm</span>
+                                    <span className="block">Hi, I&apos;m</span>
                                     <span className="block bg-gradient-to-r from-cyan-300 via-blue-300 to-purple-300 bg-clip-text text-transparent animate-gradient-x">
                                         Imane Ouazzani
                                     </span>
@@ -201,22 +201,22 @@ export default function HeroSection() {
                                         <span className="text-green-300 ml-2">{'{'}</span>
                                     </div>
                                     <div className="ml-3 sm:ml-4 text-blue-300 animate-slide-in-left" style={{ animationDelay: '0.2s' }}>
-                                        name: <span className="text-green-300">'Imane Ouazzani'</span>,
+                                        name: <span className="text-green-300">&apos;Imane Ouazzani&apos;</span>,
                                     </div>
                                     <div className="ml-3 sm:ml-4 text-blue-300 animate-slide-in-left" style={{ animationDelay: '0.4s' }}>
-                                        role: <span className="text-green-300">'Full Stack Engineer'</span>,
+                                        role: <span className="text-green-300">&apos;Full Stack Engineer&apos;</span>,
                                     </div>
                                     <div className="ml-3 sm:ml-4 text-blue-300 animate-slide-in-left" style={{ animationDelay: '0.6s' }}>
-                                        passion: <span className="text-green-300">'Building Amazing Apps'</span>,
+                                        passion: <span className="text-green-300">&apos;Building Amazing Apps&apos;</span>,
                                     </div>
                                     <div className="ml-3 sm:ml-4 text-blue-300 animate-slide-in-left" style={{ animationDelay: '0.8s' }}>
                                         skills: <span className="text-yellow-300">[</span>
                                     </div>
                                     <div className="ml-6 sm:ml-8 text-green-300 animate-slide-in-left" style={{ animationDelay: '1.0s' }}>
-                                        'React', 'Next.js', 'Node.js',
+                                        &apos;React&apos;, &apos;Next.js&apos;, &apos;Node.js&apos;,
                                     </div>
                                     <div className="ml-6 sm:ml-8 text-green-300 animate-slide-in-left" style={{ animationDelay: '1.2s' }}>
-                                        'Docker', 'DevOps', 'PostgreSQL'
+                                        &apos;Docker&apos;, &apos;DevOps&apos;, &apos;PostgreSQL&apos;
                                     </div>
                                     <div className="ml-3 sm:ml-4 text-yellow-300 animate-slide-in-left" style={{ animationDelay: '1.4s' }}>],</div>
                                     <div className="text-green-300 animate-slide-in-left" style={{ animationDelay: '1.6s' }}>{'}'}</div>

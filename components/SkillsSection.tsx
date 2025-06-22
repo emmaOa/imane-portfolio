@@ -384,7 +384,7 @@ export default function SkillsSection() {
                             Ready to Build Something Amazing?
                         </h3>
                         <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
-                            Let's collaborate and bring your ideas to life using these cutting-edge technologies
+                            Let&apos;s collaborate and bring your ideas to life using these cutting-edge technologies
                         </p>
                         <div className="flex flex-wrap justify-center gap-4">
                             <button className="btn-primary group">

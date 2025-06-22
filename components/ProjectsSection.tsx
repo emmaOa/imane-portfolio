@@ -384,8 +384,8 @@ export default function ProjectsSection() {
                                 Ready to Build Something Amazing?
                             </h3>
                             <p className="text-gray-600 mb-6 leading-relaxed">
-                                I'm always excited to take on new challenges and collaborate on innovative projects. 
-                                Let's turn your ideas into reality!
+                                I&apos;m always excited to take on new challenges and collaborate on innovative projects. 
+                                Let&apos;s turn your ideas into reality!
                             </p>
                             <div className="flex flex-col sm:flex-row gap-4 justify-center">
                                 <button
@@ -397,7 +397,7 @@ export default function ProjectsSection() {
                                     }}
                                     className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-primary-600 to-secondary-600 text-white font-semibold rounded-2xl hover:shadow-xl transition-all duration-300 hover:scale-105 group"
                                 >
-                                    <span>Let's Connect</span>
+                                    <span>Let&apos;s Connect</span>
                                     <FaExternalLinkAlt className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                                 </button>
                                 <a

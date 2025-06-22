@@ -46,7 +46,7 @@ export default function EducationSection() {
                     </h2>
                     <div className="w-32 h-1.5 bg-gradient-to-r from-indigo-600 to-purple-600 mx-auto rounded-full mb-4"></div>
                     <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-                        Innovative learning experience at one of the world's most unique coding schools
+                        Innovative learning experience at one of the world&apos;s most unique coding schools
                     </p>
                 </div>
 

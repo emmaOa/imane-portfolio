@@ -263,7 +263,7 @@ export default function AboutSection() {
                     <div className="space-y-8">
                         <div className="prose prose-lg max-w-none">
                             <p className="text-gray-600 leading-relaxed text-lg">
-                                I'm a passionate software engineer and DevOps specialist with over 5 years of experience
+                                I&apos;m a passionate software engineer and DevOps specialist with over 5 years of experience
                                 building scalable applications and robust infrastructure. I love solving complex problems
                                 and transforming ideas into reality through clean, efficient code.
                             </p>
@@ -509,7 +509,7 @@ export default function AboutSection() {
                         <div className="mt-12 text-center prose prose-lg max-w-none">
                             <div className="p-8 rounded-2xl card-glass border border-white/20">
                                 <p className="text-gray-600 leading-relaxed mb-6">
-                                    When I'm not coding, you'll find me contributing to open source projects, exploring new technologies,
+                                    When I&apos;m not coding, you&apos;ll find me contributing to open source projects, exploring new technologies,
                                     or sharing knowledge through technical articles. I believe in giving back to the community that has
                                     helped shape my career.
                                 </p>
@@ -604,7 +604,7 @@ export default function AboutSection() {
                                 </div>
 
                                 <button className="btn-primary w-full group">
-                                    <span>Let's Connect</span>
+                                    <span>Let&apos;s Connect</span>
                                     <FaArrowRight className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
                                 </button>
                             </div>

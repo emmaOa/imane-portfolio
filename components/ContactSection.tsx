@@ -43,7 +43,7 @@ export default function ContactSection() {
         {
             icon: <FaEnvelope />,
             title: "Email Me",
-            subtitle: "Let's discuss your project",
+            subtitle: "Let&apos;s discuss your project",
             value: "imaneouazzani.pro@gmail.com",
             href: "mailto:imaneouazzani.pro@gmail.com",
             color: "from-red-500 to-pink-500",
@@ -173,7 +173,7 @@ export default function ContactSection() {
                         Contact Me
                     </h2>
                     <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                        Let's discuss your project and how we can work together
+                        Let&apos;s discuss your project and how we can work together
                     </p>
                 </div>
 
@@ -342,14 +342,14 @@ export default function ContactSection() {
                                         <div className="absolute inset-2 rounded-full bg-gradient-to-r from-secondary-500 to-accent-500 animate-ping opacity-15" style={{ animationDelay: '0.5s' }}></div>
                                     </div>
                                     <h3 className="text-4xl font-bold text-gray-900 mb-6">
-                                        Let's{' '}
+                                        Let&apos;s{' '}
                                         <span className="bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">
                                             Collaborate
                                         </span>
                                     </h3>
                                     <div className="max-w-md mx-auto mb-8">
                                         <p className="text-gray-600 leading-relaxed text-lg mb-4">
-                                            Ready to work together on your next project? Let's discuss how we can turn your ideas into exceptional digital solutions.
+                                            Ready to work together on your next project? Let&apos;s discuss how we can turn your ideas into exceptional digital solutions.
                                         </p>
                                         <p className="text-primary-600 font-semibold">
                                             I'm excited to hear about your project! �

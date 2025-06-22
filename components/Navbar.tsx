@@ -97,7 +97,7 @@ export default function Navbar() {
                             onClick={() => scrollToSection('contact')}
                             className="btn-primary ml-4"
                         >
-                            <span>Let's Talk</span>
+                            <span>Let&apos;s Talk</span>
                         </button>
                     </div>
 
@@ -165,7 +165,7 @@ export default function Navbar() {
                             onClick={() => scrollToSection('contact')}
                             className="btn-primary w-full mt-4"
                         >
-                            Let's Talk
+                            Let&apos;s Talk
                         </button>
                     </div>
                 </div>
