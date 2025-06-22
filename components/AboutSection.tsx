@@ -48,6 +48,52 @@ import {
 } from 'react-icons/si'
 
 export default function AboutSection() {
+    // Helper function to get explicit gradient classes to prevent Tailwind purging
+    const getGradientClass = (color: string, prefix: string = '', suffix: string = '', direction: string = 'bg-gradient-to-br') => {
+        const baseClasses = prefix ? `${prefix} ` : '';
+        const suffixClasses = suffix ? ` ${suffix}` : '';
+        
+        switch (color) {
+            case 'from-blue-500 to-blue-600':
+                return `${baseClasses}${direction} from-blue-500 to-blue-600${suffixClasses}`;
+            case 'from-green-500 to-green-600':
+                return `${baseClasses}${direction} from-green-500 to-green-600${suffixClasses}`;
+            case 'from-orange-500 to-orange-600':
+                return `${baseClasses}${direction} from-orange-500 to-orange-600${suffixClasses}`;
+            case 'from-purple-500 to-purple-600':
+                return `${baseClasses}${direction} from-purple-500 to-purple-600${suffixClasses}`;
+            case 'from-blue-500 to-cyan-500':
+                return `${baseClasses}bg-gradient-to-r from-blue-500 to-cyan-500${suffixClasses}`;
+            case 'from-purple-500 to-pink-500':
+                return `${baseClasses}bg-gradient-to-r from-purple-500 to-pink-500${suffixClasses}`;
+            case 'from-green-500 to-emerald-500':
+                return `${baseClasses}bg-gradient-to-r from-green-500 to-emerald-500${suffixClasses}`;
+            case 'from-red-500 to-rose-500':
+                return `${baseClasses}bg-gradient-to-r from-red-500 to-rose-500${suffixClasses}`;
+            default:
+                return `${baseClasses}${direction} from-gray-500 to-gray-600${suffixClasses}`;
+        }
+    };
+
+    // Helper function to get progress bar gradient based on competency color
+    const getProgressGradient = (color: string) => {
+        switch (color) {
+            case 'text-blue-600':
+                return 'bg-gradient-to-r from-blue-400 to-blue-600';
+            case 'text-purple-600':
+                return 'bg-gradient-to-r from-purple-400 to-purple-600';
+            case 'text-green-600':
+                return 'bg-gradient-to-r from-green-400 to-green-600';
+            case 'text-indigo-600':
+                return 'bg-gradient-to-r from-indigo-400 to-indigo-600';
+            case 'text-orange-600':
+                return 'bg-gradient-to-r from-orange-400 to-orange-600';
+            case 'text-red-600':
+                return 'bg-gradient-to-r from-red-400 to-red-600';
+            default:
+                return 'bg-gradient-to-r from-gray-400 to-gray-600';
+        }
+    };
     const [activeTab, setActiveTab] = useState('overview')
     const [isVisible, setIsVisible] = useState(false)
     const [animateElements, setAnimateElements] = useState(false)
@@ -74,31 +120,31 @@ export default function AboutSection() {
     }, [])
 
     const tabs = [
-        { 
-            id: 'overview', 
-            label: 'Overview', 
-            icon: <FaUsers />, 
+        {
+            id: 'overview',
+            label: 'Overview',
+            icon: <FaUsers />,
             color: 'from-blue-500 to-cyan-500',
             bgColor: 'bg-blue-50'
         },
-        { 
-            id: 'skills', 
-            label: 'Skills', 
-            icon: <FaCode />, 
+        {
+            id: 'skills',
+            label: 'Skills',
+            icon: <FaCode />,
             color: 'from-purple-500 to-pink-500',
             bgColor: 'bg-purple-50'
         },
-        { 
-            id: 'experience', 
-            label: 'Journey', 
-            icon: <FaBriefcase />, 
+        {
+            id: 'experience',
+            label: 'Journey',
+            icon: <FaBriefcase />,
             color: 'from-green-500 to-emerald-500',
             bgColor: 'bg-green-50'
         },
-        { 
-            id: 'interests', 
-            label: 'Interests', 
-            icon: <FaHeart />, 
+        {
+            id: 'interests',
+            label: 'Interests',
+            icon: <FaHeart />,
             color: 'from-red-500 to-rose-500',
             bgColor: 'bg-red-50'
         }
@@ -284,15 +330,15 @@ export default function AboutSection() {
                                     style={{ animationDelay: `${index * 100}ms` }}
                                 >
                                     {/* Background gradient */}
-                                    <div className={`absolute inset-0 bg-gradient-to-br ${achievement.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}></div>
-                                    
+                                    <div className={getGradientClass(achievement.color, 'absolute inset-0', 'opacity-0 group-hover:opacity-5 transition-opacity duration-500')}></div>
+
                                     <div className="relative">
                                         <div className="flex items-start justify-between mb-4">
-                                            <div className={`text-3xl bg-gradient-to-br ${achievement.color} bg-clip-text text-transparent group-hover:scale-110 transition-transform duration-300`}>
+                                            <div className={getGradientClass(achievement.color, 'text-3xl', 'bg-clip-text text-transparent group-hover:scale-110 transition-transform duration-300')}>
                                                 {achievement.icon}
                                             </div>
                                             <div className="text-right">
-                                                <div className={`text-2xl font-bold bg-gradient-to-br ${achievement.color} bg-clip-text text-transparent`}>
+                                                <div className={getGradientClass(achievement.color, 'text-2xl font-bold', 'bg-clip-text text-transparent')}>
                                                     {achievement.metric}
                                                 </div>
                                                 <div className="text-xs text-gray-500 uppercase tracking-wide">
@@ -357,18 +403,11 @@ export default function AboutSection() {
                                         </div>
                                         <span className="text-sm font-semibold text-gray-600">{competency.level}%</span>
                                     </div>
-                                    
+
                                     {/* Animated Progress Bar */}
                                     <div className="w-full bg-gray-200 rounded-full h-2 overflow-hidden">
-                                        <div 
-                                            className={`h-full bg-gradient-to-r ${competency.color?.includes('blue') ? 'from-blue-400 to-blue-600' :
-                                                competency.color?.includes('purple') ? 'from-purple-400 to-purple-600' :
-                                                competency.color?.includes('green') ? 'from-green-400 to-green-600' :
-                                                competency.color?.includes('indigo') ? 'from-indigo-400 to-indigo-600' :
-                                                competency.color?.includes('orange') ? 'from-orange-400 to-orange-600' :
-                                                competency.color?.includes('red') ? 'from-red-400 to-red-600' :
-                                                'from-gray-400 to-gray-600'
-                                                } rounded-full transition-all duration-1000 ease-out`}
+                                        <div
+                                            className={`h-full ${getProgressGradient(competency.color)} rounded-full transition-all duration-1000 ease-out`}
                                             style={{
                                                 width: skillBarsAnimated ? `${competency.level}%` : '0%',
                                                 transitionDelay: `${index * 100}ms`
@@ -440,7 +479,7 @@ export default function AboutSection() {
                                     >
                                         {/* Enhanced Timeline dot */}
                                         <div className="relative z-10 flex-shrink-0">
-                                            <div className={`w-6 h-6 bg-gradient-to-br ${item.color} rounded-full ring-4 ring-white shadow-lg flex items-center justify-center`}>
+                                            <div className={getGradientClass(item.color, 'w-6 h-6', 'rounded-full ring-4 ring-white shadow-lg flex items-center justify-center')}>
                                                 <div className="w-2 h-2 bg-white rounded-full"></div>
                                             </div>
                                             {item.type === 'achievement' && (
@@ -453,11 +492,11 @@ export default function AboutSection() {
                                         {/* Enhanced Content */}
                                         <div className="flex-1 card-glass p-6 rounded-2xl border border-white/20 group hover:scale-[1.02] transition-all duration-300 relative overflow-hidden">
                                             {/* Background gradient on hover */}
-                                            <div className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}></div>
-                                            
+                                            <div className={getGradientClass(item.color, 'absolute inset-0', 'opacity-0 group-hover:opacity-5 transition-opacity duration-500')}></div>
+
                                             <div className="relative">
                                                 <div className="flex items-center justify-between mb-3">
-                                                    <span className={`text-sm font-semibold bg-gradient-to-r ${item.color} bg-clip-text text-transparent px-3 py-1 rounded-full border border-current border-opacity-20`}>
+                                                    <span className={getGradientClass(item.color, 'text-sm font-semibold', 'bg-clip-text text-transparent px-3 py-1 rounded-full border border-current border-opacity-20')}>
                                                         {item.year}
                                                     </span>
                                                     <div className="flex items-center space-x-2">
@@ -469,7 +508,7 @@ export default function AboutSection() {
                                                 <h4 className="text-lg font-bold text-gray-900 mb-1 group-hover:text-primary-600 transition-colors duration-300">
                                                     {item.role}
                                                 </h4>
-                                                <p className={`font-medium mb-3 bg-gradient-to-r ${item.color} bg-clip-text text-transparent`}>{item.company}</p>
+                                                <p className={getGradientClass(item.color, 'font-medium mb-3', 'bg-clip-text text-transparent')}>{item.company}</p>
                                                 <p className="text-gray-600">{item.description}</p>
                                             </div>
                                         </div>
@@ -566,7 +605,7 @@ export default function AboutSection() {
                             {/* Background decorations */}
                             <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary-400/10 to-secondary-400/10 rounded-full blur-2xl"></div>
                             <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-accent-400/10 to-primary-400/10 rounded-full blur-xl"></div>
-                            
+
                             <div className="text-center relative z-10">
                                 <div className="relative inline-block mb-6">
                                     <div className="w-32 h-32 rounded-full bg-gradient-to-br from-primary-500 via-secondary-500 to-accent-500 p-1 shadow-2xl">
@@ -625,9 +664,9 @@ export default function AboutSection() {
                                         }`}
                                 >
                                     {activeTab === tab.id && (
-                                        <div className={`absolute inset-0 bg-gradient-to-r ${tab.color} opacity-5 rounded-xl`}></div>
+                                        <div className={getGradientClass(tab.color, 'absolute inset-0', 'opacity-5 rounded-xl')}></div>
                                     )}
-                                    <span className={`text-lg relative z-10 ${activeTab === tab.id ? `bg-gradient-to-r ${tab.color} bg-clip-text text-transparent` : ''}`}>
+                                    <span className={`text-lg relative z-10 ${activeTab === tab.id ? getGradientClass(tab.color, '', 'bg-clip-text text-transparent', 'bg-gradient-to-r') : ''}`}>
                                         {tab.icon}
                                     </span>
                                     <span className="relative z-10">{tab.label}</span>

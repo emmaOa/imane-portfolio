@@ -301,7 +301,7 @@ export default function ProjectsSection() {
                         backend engineering, and DevOps practices. Each project demonstrates clean code,
                         modern architecture, and best practices.
                     </p>
-                    
+
                     {/* Stats */}
                     <div className="flex flex-wrap justify-center gap-6 mt-8">
                         <div className="text-center">
@@ -337,10 +337,10 @@ export default function ProjectsSection() {
                                     {category.icon}
                                 </span>
                                 <span>{category.label}</span>
-                                <span className={`text-xs px-2 py-0.5 rounded-full ${filter === category.id 
-                                    ? 'bg-white/20 text-white' 
+                                <span className={`text-xs px-2 py-0.5 rounded-full ${filter === category.id
+                                    ? 'bg-white/20 text-white'
                                     : 'bg-primary-100 text-primary-600'
-                                }`}>
+                                    }`}>
                                     {count}
                                 </span>
                                 {filter === category.id && (
@@ -377,14 +377,14 @@ export default function ProjectsSection() {
                         {/* Background decoration */}
                         <div className="absolute inset-0 bg-gradient-to-br from-primary-50/50 to-secondary-50/50 opacity-50"></div>
                         <div className="absolute -top-6 -right-6 w-24 h-24 bg-gradient-to-br from-primary-400/20 to-secondary-400/20 rounded-full blur-2xl"></div>
-                        
+
                         <div className="relative z-10">
                             <div className="text-4xl mb-4">🚀</div>
                             <h3 className="text-2xl font-bold text-gray-900 mb-4">
                                 Ready to Build Something Amazing?
                             </h3>
                             <p className="text-gray-600 mb-6 leading-relaxed">
-                                I&apos;m always excited to take on new challenges and collaborate on innovative projects. 
+                                I&apos;m always excited to take on new challenges and collaborate on innovative projects.
                                 Let&apos;s turn your ideas into reality!
                             </p>
                             <div className="flex flex-col sm:flex-row gap-4 justify-center">

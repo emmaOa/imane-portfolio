@@ -220,7 +220,7 @@ export default function HeroSection() {
                                     </div>
                                     <div className="ml-3 sm:ml-4 text-yellow-300 animate-slide-in-left" style={{ animationDelay: '1.4s' }}>],</div>
                                     <div className="text-green-300 animate-slide-in-left" style={{ animationDelay: '1.6s' }}>{'}'}</div>
-                                    
+
                                     {/* Typing cursor */}
                                     <div className="flex items-center animate-fade-in" style={{ animationDelay: '1.8s' }}>
                                         <div className="w-0.5 h-4 bg-white animate-pulse ml-2"></div>

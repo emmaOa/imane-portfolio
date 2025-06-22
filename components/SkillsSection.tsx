@@ -110,12 +110,12 @@ const SkillCard = ({ skill, index, isVisible }: SkillCardProps) => {
             {/* Background gradient overlay */}
             <div className={`absolute inset-0 bg-gradient-to-br ${skill.color?.includes('yellow') ? 'from-yellow-400/5 to-yellow-600/5' :
                 skill.color?.includes('blue') ? 'from-blue-400/5 to-blue-600/5' :
-                skill.color?.includes('green') ? 'from-green-400/5 to-green-600/5' :
-                skill.color?.includes('red') ? 'from-red-400/5 to-red-600/5' :
-                skill.color?.includes('purple') ? 'from-purple-400/5 to-purple-600/5' :
-                'from-gray-400/5 to-gray-600/5'
+                    skill.color?.includes('green') ? 'from-green-400/5 to-green-600/5' :
+                        skill.color?.includes('red') ? 'from-red-400/5 to-red-600/5' :
+                            skill.color?.includes('purple') ? 'from-purple-400/5 to-purple-600/5' :
+                                'from-gray-400/5 to-gray-600/5'
                 } opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
-            
+
             {/* Featured badge */}
             {skill.featured && (
                 <div className="absolute top-3 right-3">
@@ -141,15 +141,15 @@ const SkillCard = ({ skill, index, isVisible }: SkillCardProps) => {
                         <span className="text-sm font-semibold text-gray-700">{skill.level}%</span>
                     </div>
                     <div className="w-full bg-gray-200 rounded-full h-2 overflow-hidden">
-                        <div 
+                        <div
                             className={`h-full bg-gradient-to-r ${skill.color?.includes('yellow') ? 'from-yellow-400 to-yellow-600' :
                                 skill.color?.includes('blue') ? 'from-blue-400 to-blue-600' :
-                                skill.color?.includes('green') ? 'from-green-400 to-green-600' :
-                                skill.color?.includes('red') ? 'from-red-400 to-red-600' :
-                                skill.color?.includes('purple') ? 'from-purple-400 to-purple-600' :
-                                skill.color?.includes('orange') ? 'from-orange-400 to-orange-600' :
-                                skill.color?.includes('cyan') ? 'from-cyan-400 to-cyan-600' :
-                                'from-gray-400 to-gray-600'
+                                    skill.color?.includes('green') ? 'from-green-400 to-green-600' :
+                                        skill.color?.includes('red') ? 'from-red-400 to-red-600' :
+                                            skill.color?.includes('purple') ? 'from-purple-400 to-purple-600' :
+                                                skill.color?.includes('orange') ? 'from-orange-400 to-orange-600' :
+                                                    skill.color?.includes('cyan') ? 'from-cyan-400 to-cyan-600' :
+                                                        'from-gray-400 to-gray-600'
                                 } rounded-full transition-all duration-1000 ease-out`}
                             style={{
                                 width: showLevel ? `${skill.level}%` : '0%'
@@ -294,8 +294,8 @@ export default function SkillsSection() {
         { name: 'Prometheus', icon: <SiPrometheus />, color: 'text-orange-500', level: 75, category: 'Tools' }
     ]
 
-    const filteredSkills = activeCategory === 'All' 
-        ? skills 
+    const filteredSkills = activeCategory === 'All'
+        ? skills
         : skills.filter(skill => skill.category === activeCategory)
 
     const featuredSkills = skills.filter(skill => skill.featured)
@@ -307,8 +307,8 @@ export default function SkillsSection() {
     }
 
     return (
-        <section 
-            id="skills" 
+        <section
+            id="skills"
             ref={sectionRef}
             className="py-20 bg-gradient-to-br from-surface-50 via-white to-primary-50/30 relative overflow-hidden"
         >
@@ -339,7 +339,7 @@ export default function SkillsSection() {
 
                 </div>
 
-                
+
 
                 {/* Category Filter */}
                 <div className={`mb-12 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`} style={{ animationDelay: '600ms' }}>

@@ -1,11 +1,11 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import { 
-    FaEnvelope, 
-    FaPhone, 
-    FaGithub, 
-    FaLinkedin, 
+import {
+    FaEnvelope,
+    FaPhone,
+    FaGithub,
+    FaLinkedin,
     FaRocket,
     FaCode,
     FaUsers,
@@ -154,8 +154,8 @@ export default function ContactSection() {
     ]
 
     return (
-        <section 
-            id="contact" 
+        <section
+            id="contact"
             ref={sectionRef}
             className="py-20 bg-gradient-to-br from-surface-50 via-white to-primary-50/30 relative overflow-hidden"
         >
@@ -194,11 +194,11 @@ export default function ContactSection() {
                             >
                                 {/* Background pattern */}
                                 <div className="absolute inset-0 bg-grid-white/10 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.5))] opacity-20"></div>
-                                
+
                                 {/* Floating elements */}
                                 <div className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/20 animate-pulse"></div>
                                 <div className="absolute bottom-3 left-3 w-4 h-4 rounded-full bg-white/30 animate-pulse" style={{ animationDelay: '1s' }}></div>
-                                
+
                                 <div className="relative z-10">
                                     <div className={`w-14 h-14 bg-gradient-to-br ${area.iconBg} rounded-xl flex items-center justify-center text-white text-2xl mb-4 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-xl`}>
                                         {area.icon}
@@ -227,7 +227,7 @@ export default function ContactSection() {
                             <h3 className="text-3xl font-bold text-gray-900 mb-2">Get In Touch</h3>
                             <p className="text-gray-600">Choose your preferred way to connect and start the conversation</p>
                         </div>
-                        
+
                         <div className="space-y-4 mb-8">
                             {contactMethods.map((method, index) => (
                                 <a
@@ -240,11 +240,11 @@ export default function ContactSection() {
                                     <div className={`relative overflow-hidden p-6 rounded-2xl bg-gradient-to-r ${method.bgColor} border border-white/60 group-hover:scale-105 transition-all duration-500 shadow-lg hover:shadow-2xl`}>
                                         {/* Animated background */}
                                         <div className={`absolute inset-0 bg-gradient-to-r ${method.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}></div>
-                                        
+
                                         {/* Floating particles */}
                                         <div className="absolute top-4 right-4 w-2 h-2 rounded-full bg-white/40 animate-ping"></div>
                                         <div className="absolute bottom-4 right-8 w-1 h-1 rounded-full bg-white/60 animate-pulse" style={{ animationDelay: '0.5s' }}></div>
-                                        
+
                                         <div className="relative flex items-center">
                                             <div className={`w-16 h-16 bg-gradient-to-br ${method.color} rounded-2xl flex items-center justify-center text-white text-xl mr-4 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-xl`}>
                                                 {method.icon}
@@ -325,12 +325,12 @@ export default function ContactSection() {
                             {/* Enhanced background decorations */}
                             <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-primary-400/20 to-secondary-400/20 rounded-full blur-3xl animate-pulse"></div>
                             <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-accent-400/20 to-primary-400/20 rounded-full blur-2xl animate-pulse" style={{ animationDelay: '1s' }}></div>
-                            
+
                             {/* Floating particles */}
                             <div className="absolute top-8 left-8 w-3 h-3 rounded-full bg-primary-400/30 animate-bounce"></div>
                             <div className="absolute top-16 right-16 w-2 h-2 rounded-full bg-secondary-400/40 animate-bounce" style={{ animationDelay: '0.5s' }}></div>
                             <div className="absolute bottom-12 right-12 w-4 h-4 rounded-full bg-accent-400/30 animate-bounce" style={{ animationDelay: '1s' }}></div>
-                            
+
                             <div className="relative z-10">
                                 <div className="text-center mb-8">
                                     <div className="relative inline-block mb-8">
@@ -355,7 +355,7 @@ export default function ContactSection() {
                                             I'm excited to hear about your project! �
                                         </p>
                                     </div>
-                                    
+
                                     {/* Feature highlights */}
                                     <div className="grid grid-cols-2 gap-4 mb-8">
                                         <div className="flex items-center space-x-2 text-sm text-gray-600">
@@ -387,7 +387,7 @@ export default function ContactSection() {
                                         <span>Send Message</span>
                                         <FaArrowRight className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
                                     </a>
-                                    
+
                                     <a
                                         href="https://www.linkedin.com/in/imane-ouazzani-chahdi"
                                         target="_blank"
