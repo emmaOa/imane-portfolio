@@ -1,36 +1,11 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useRef } from 'react'
 import { FaGithub, FaLinkedin, FaDownload, FaArrowDown, FaRocket, FaCode, FaLaptopCode } from 'react-icons/fa'
 import { HiMail, HiPlay } from 'react-icons/hi'
 
 export default function HeroSection() {
-    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
-    const [isVisible, setIsVisible] = useState(false)
     const heroRef = useRef<HTMLElement>(null)
-
-    useEffect(() => {
-        const handleMouseMove = (e: MouseEvent) => {
-            setMousePosition({ x: e.clientX, y: e.clientY })
-        }
-
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                setIsVisible(entry.isIntersecting)
-            },
-            { threshold: 0.1 }
-        )
-
-        if (heroRef.current) {
-            observer.observe(heroRef.current)
-        }
-
-        window.addEventListener('mousemove', handleMouseMove)
-        return () => {
-            window.removeEventListener('mousemove', handleMouseMove)
-            observer.disconnect()
-        }
-    }, [])
 
     const scrollToSection = (sectionId: string) => {
         const element = document.getElementById(sectionId)
@@ -53,23 +28,14 @@ export default function HeroSection() {
         >
             {/* Dynamic Background */}
             <div className="absolute inset-0 overflow-hidden">
-                {/* Animated gradient mesh */}
-                <div className="absolute inset-0 bg-gradient-radial from-primary-500/20 via-transparent to-secondary-500/20 animate-gradient-shift"></div>
+                {/* Static gradient background */}
+                <div className="absolute inset-0 bg-gradient-radial from-primary-500/20 via-transparent to-secondary-500/20"></div>
 
-                {/* Floating geometric elements - responsive sizes */}
-                <div className="absolute top-16 sm:top-20 left-[5%] sm:left-[10%] w-12 h-12 sm:w-20 sm:h-20 bg-gradient-to-r from-primary-400/40 to-accent-400/40 rounded-2xl rotate-45 animate-float"></div>
-                <div className="absolute top-[25%] sm:top-[30%] right-[10%] sm:right-[15%] w-20 h-20 sm:w-32 sm:h-32 bg-gradient-to-r from-secondary-400/30 to-primary-400/30 rounded-full animate-float-delayed"></div>
-                <div className="absolute bottom-[20%] sm:bottom-[25%] left-[15%] sm:left-[20%] w-10 h-10 sm:w-16 sm:h-16 bg-gradient-to-r from-accent-400/35 to-secondary-400/35 rounded-xl rotate-12 animate-float"></div>
-                <div className="absolute bottom-[10%] sm:bottom-[15%] right-[20%] sm:right-[25%] w-16 h-16 sm:w-24 sm:h-24 bg-gradient-to-r from-primary-400/30 to-accent-400/30 rounded-full animate-float-delayed"></div>
-
-                {/* Interactive mouse follower - only on desktop */}
-                <div
-                    className="hidden lg:block absolute w-96 h-96 bg-gradient-radial from-primary-500/25 via-secondary-500/15 to-transparent rounded-full blur-3xl transition-all duration-700 ease-out pointer-events-none will-change-transform"
-                    style={{
-                        left: mousePosition.x - 192,
-                        top: mousePosition.y - 192,
-                    }}
-                ></div>
+                {/* Static geometric elements */}
+                <div className="absolute top-16 sm:top-20 left-[5%] sm:left-[10%] w-12 h-12 sm:w-20 sm:h-20 bg-gradient-to-r from-primary-400/40 to-accent-400/40 rounded-2xl rotate-45"></div>
+                <div className="absolute top-[25%] sm:top-[30%] right-[10%] sm:right-[15%] w-20 h-20 sm:w-32 sm:h-32 bg-gradient-to-r from-secondary-400/30 to-primary-400/30 rounded-full"></div>
+                <div className="absolute bottom-[20%] sm:bottom-[25%] left-[15%] sm:left-[20%] w-10 h-10 sm:w-16 sm:h-16 bg-gradient-to-r from-accent-400/35 to-secondary-400/35 rounded-xl rotate-12"></div>
+                <div className="absolute bottom-[10%] sm:bottom-[15%] right-[20%] sm:right-[25%] w-16 h-16 sm:w-24 sm:h-24 bg-gradient-to-r from-primary-400/30 to-accent-400/30 rounded-full"></div>
 
                 {/* Grid pattern overlay */}
                 <div className="absolute inset-0 opacity-[0.03]" style={{
@@ -88,15 +54,15 @@ export default function HeroSection() {
                     <div className="text-center lg:text-left space-y-6 lg:space-y-8 order-2 lg:order-1">
                         {/* Header */}
                         <div className="space-y-4 lg:space-y-6">
-                            <div className={`transform transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+                            <div>
                                 <div className="inline-flex items-center px-3 sm:px-4 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/20 text-white/80 text-xs sm:text-sm font-medium mb-4 lg:mb-6">
-                                    <div className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></div>
+                                    <div className="w-2 h-2 bg-green-400 rounded-full mr-2"></div>
                                     Available for hire
                                 </div>
 
                                 <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight">
                                     <span className="block">Hi, I&apos;m</span>
-                                    <span className="block bg-gradient-to-r from-cyan-300 via-blue-300 to-purple-300 bg-clip-text text-transparent animate-gradient-x">
+                                    <span className="block bg-gradient-to-r from-cyan-300 via-blue-300 to-purple-300 bg-clip-text text-transparent">
                                         Imane Ouazzani
                                     </span>
                                     <span className="block text-2xl sm:text-3xl lg:text-4xl mt-2 text-white/90 font-medium">
@@ -105,7 +71,7 @@ export default function HeroSection() {
                                 </h1>
                             </div>
 
-                            <div className={`transform transition-all duration-1000 delay-300 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+                            <div>
                                 <p className="text-base sm:text-lg lg:text-xl text-white/70 leading-relaxed max-w-2xl mx-auto lg:mx-0">
                                     Passionate about building scalable applications and optimizing development workflows.
                                     I transform ideas into robust, efficient solutions using modern technologies and DevOps practices.
@@ -113,11 +79,11 @@ export default function HeroSection() {
                             </div>
 
                             {/* Skills badges */}
-                            <div className={`flex flex-wrap justify-center lg:justify-start gap-2 sm:gap-3 transform transition-all duration-1000 delay-500 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+                            <div className="flex flex-wrap justify-center lg:justify-start gap-2 sm:gap-3">
                                 {skills.map((skill, index) => (
                                     <div
                                         key={index}
-                                        className="group flex items-center space-x-2 px-3 sm:px-4 py-2 bg-white/10 backdrop-blur-md rounded-xl border border-white/20 hover:border-primary-400/50 transition-all duration-300 hover:scale-105"
+                                        className="group flex items-center space-x-2 px-3 sm:px-4 py-2 bg-white/10 backdrop-blur-md rounded-xl border border-white/20 hover:border-primary-400/50 transition-all duration-300"
                                     >
                                         <div className="text-primary-300 group-hover:text-primary-200 transition-colors text-sm sm:text-base">
                                             {skill.icon}
@@ -129,10 +95,10 @@ export default function HeroSection() {
                         </div>
 
                         {/* CTA Buttons */}
-                        <div className={`flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start transform transition-all duration-1000 delay-700 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+                        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
                             <button
                                 onClick={() => scrollToSection('contact')}
-                                className="group relative inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-primary-500 to-secondary-500 text-white font-semibold rounded-xl sm:rounded-2xl hover:shadow-2xl hover:shadow-primary-500/25 transition-all duration-300 hover:scale-105 overflow-hidden w-full sm:w-auto"
+                                className="group relative inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-primary-500 to-secondary-500 text-white font-semibold rounded-xl sm:rounded-2xl hover:shadow-2xl hover:shadow-primary-500/25 transition-all duration-300 overflow-hidden w-full sm:w-auto"
                             >
                                 <div className="absolute inset-0 bg-gradient-to-r from-secondary-500 to-primary-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                                 <HiMail className="w-4 h-4 sm:w-5 sm:h-5 mr-2 relative z-10" />
@@ -141,7 +107,7 @@ export default function HeroSection() {
 
                             <button
                                 onClick={() => scrollToSection('projects')}
-                                className="group inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 border-2 border-white/30 text-white font-semibold rounded-xl sm:rounded-2xl hover:border-primary-400 hover:bg-white/10 transition-all duration-300 hover:scale-105 w-full sm:w-auto"
+                                className="group inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 border-2 border-white/30 text-white font-semibold rounded-xl sm:rounded-2xl hover:border-primary-400 hover:bg-white/10 transition-all duration-300 w-full sm:w-auto"
                             >
                                 <HiPlay className="w-4 h-4 sm:w-5 sm:h-5 mr-2 group-hover:translate-x-1 transition-transform" />
                                 <span className="text-sm sm:text-base">View My Work</span>
@@ -149,7 +115,7 @@ export default function HeroSection() {
                         </div>
 
                         {/* Social Links */}
-                        <div className={`flex items-center justify-center lg:justify-start space-x-4 transform transition-all duration-1000 delay-900 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+                        <div className="flex items-center justify-center lg:justify-start space-x-4">
                             <span className="text-white/60 text-xs sm:text-sm">Follow me:</span>
                             <div className="flex space-x-3">
                                 <a
@@ -175,7 +141,7 @@ export default function HeroSection() {
                     </div>
 
                     {/* Right Content - Visual Element */}
-                    <div className={`relative order-1 lg:order-2 transform transition-all duration-1000 delay-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+                    <div className="relative order-1 lg:order-2">
                         <div className="relative max-w-sm sm:max-w-md lg:max-w-lg mx-auto">
                             {/* Glowing background */}
                             <div className="absolute inset-0 bg-gradient-to-r from-primary-500/40 to-secondary-500/40 rounded-2xl sm:rounded-3xl blur-2xl sm:blur-3xl animate-pulse-slow scale-110"></div>
@@ -245,7 +211,7 @@ export default function HeroSection() {
                 </div>
 
                 {/* Scroll indicator */}
-                <div className={`absolute bottom-4 sm:bottom-8 left-1/2 transform -translate-x-1/2 transition-all duration-1000 delay-1200 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+                <div className="absolute bottom-4 sm:bottom-8 left-1/2 transform -translate-x-1/2">
                     <button
                         onClick={() => scrollToSection('about')}
                         className="group flex flex-col items-center space-y-1 sm:space-y-2 text-white/60 hover:text-white transition-colors duration-300"

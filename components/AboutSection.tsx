@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useRef } from 'react'
 import {
     FaCode,
     FaCloud,
@@ -18,7 +18,6 @@ import {
     FaLinkedin,
     FaGithub,
     FaStar,
-    FaFire,
     FaLightbulb,
     FaGamepad,
     FaCamera,
@@ -28,125 +27,47 @@ import {
     FaDatabase,
     FaLayerGroup
 } from 'react-icons/fa'
-import {
-    SiJavascript,
-    SiTypescript,
-    SiReact,
-    SiNodedotjs,
-    SiPython,
-    SiDocker,
-    SiKubernetes,
-    SiAmazon,
-    SiGit,
-    SiMongodb,
-    SiPostgresql,
-    SiRedis,
-    SiTerraform,
-    SiJenkins,
-    SiGrafana,
-    SiPrometheus
-} from 'react-icons/si'
 
 export default function AboutSection() {
-    // Helper function to get explicit gradient classes to prevent Tailwind purging
-    const getGradientClass = (color: string, prefix: string = '', suffix: string = '', direction: string = 'bg-gradient-to-br') => {
-        const baseClasses = prefix ? `${prefix} ` : '';
-        const suffixClasses = suffix ? ` ${suffix}` : '';
+    // Helper function to get consistent hero-style gradient classes
+    const getHeroGradientClass = (variant: 'background' | 'text' | 'subtle' = 'background', customClasses: string = '') => {
+        const base = customClasses ? `${customClasses} ` : '';
         
-        switch (color) {
-            case 'from-blue-500 to-blue-600':
-                return `${baseClasses}${direction} from-blue-500 to-blue-600${suffixClasses}`;
-            case 'from-green-500 to-green-600':
-                return `${baseClasses}${direction} from-green-500 to-green-600${suffixClasses}`;
-            case 'from-orange-500 to-orange-600':
-                return `${baseClasses}${direction} from-orange-500 to-orange-600${suffixClasses}`;
-            case 'from-purple-500 to-purple-600':
-                return `${baseClasses}${direction} from-purple-500 to-purple-600${suffixClasses}`;
-            case 'from-blue-500 to-cyan-500':
-                return `${baseClasses}bg-gradient-to-r from-blue-500 to-cyan-500${suffixClasses}`;
-            case 'from-purple-500 to-pink-500':
-                return `${baseClasses}bg-gradient-to-r from-purple-500 to-pink-500${suffixClasses}`;
-            case 'from-green-500 to-emerald-500':
-                return `${baseClasses}bg-gradient-to-r from-green-500 to-emerald-500${suffixClasses}`;
-            case 'from-red-500 to-rose-500':
-                return `${baseClasses}bg-gradient-to-r from-red-500 to-rose-500${suffixClasses}`;
+        switch (variant) {
+            case 'background':
+                return `${base}bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900`;
+            case 'text':
+                return `${base}bg-gradient-to-r from-cyan-300 via-blue-300 to-purple-300 bg-clip-text text-transparent`;
+            case 'subtle':
+                return `${base}bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-cyan-500/20`;
             default:
-                return `${baseClasses}${direction} from-gray-500 to-gray-600${suffixClasses}`;
+                return `${base}bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900`;
         }
     };
 
-    // Helper function to get progress bar gradient based on competency color
-    const getProgressGradient = (color: string) => {
-        switch (color) {
-            case 'text-blue-600':
-                return 'bg-gradient-to-r from-blue-400 to-blue-600';
-            case 'text-purple-600':
-                return 'bg-gradient-to-r from-purple-400 to-purple-600';
-            case 'text-green-600':
-                return 'bg-gradient-to-r from-green-400 to-green-600';
-            case 'text-indigo-600':
-                return 'bg-gradient-to-r from-indigo-400 to-indigo-600';
-            case 'text-orange-600':
-                return 'bg-gradient-to-r from-orange-400 to-orange-600';
-            case 'text-red-600':
-                return 'bg-gradient-to-r from-red-400 to-red-600';
-            default:
-                return 'bg-gradient-to-r from-gray-400 to-gray-600';
-        }
-    };
     const [activeTab, setActiveTab] = useState('overview')
-    const [isVisible, setIsVisible] = useState(false)
-    const [animateElements, setAnimateElements] = useState(false)
-    const [skillBarsAnimated, setSkillBarsAnimated] = useState(false)
     const sectionRef = useRef<HTMLElement>(null)
-
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (entry.isIntersecting) {
-                    setIsVisible(true)
-                    setTimeout(() => setAnimateElements(true), 200)
-                    setTimeout(() => setSkillBarsAnimated(true), 800)
-                }
-            },
-            { threshold: 0.1 }
-        )
-
-        if (sectionRef.current) {
-            observer.observe(sectionRef.current)
-        }
-
-        return () => observer.disconnect()
-    }, [])
 
     const tabs = [
         {
             id: 'overview',
             label: 'Overview',
-            icon: <FaUsers />,
-            color: 'from-blue-500 to-cyan-500',
-            bgColor: 'bg-blue-50'
+            icon: <FaUsers />
         },
         {
             id: 'skills',
             label: 'Skills',
-            icon: <FaCode />,
-            color: 'from-purple-500 to-pink-500',
-            bgColor: 'bg-purple-50'
+            icon: <FaCode />
         },
         {
             id: 'experience',
             label: 'Journey',
-            icon: <FaBriefcase />,
-            color: 'from-green-500 to-emerald-500',
-            bgColor: 'bg-green-50'
+            icon: <FaBriefcase />
         },
         {
             id: 'interests',
             label: 'Interests',
-            icon: <FaHeart />,
-            color: 'from-red-500 to-rose-500',
-            bgColor: 'bg-red-50'
+            icon: <FaHeart />
         }
     ]
 
@@ -154,42 +75,36 @@ export default function AboutSection() {
         {
             name: 'Full-Stack Development',
             icon: <FaCode />,
-            color: 'text-blue-600',
             description: 'End-to-end web application development',
             level: 92
         },
         {
             name: 'DevOps & Cloud',
             icon: <FaCloud />,
-            color: 'text-purple-600',
             description: 'Infrastructure automation and deployment',
             level: 88
         },
         {
             name: 'System Architecture',
             icon: <FaRocket />,
-            color: 'text-green-600',
             description: 'Scalable system design and optimization',
             level: 85
         },
         {
             name: 'Database Design',
             icon: <FaDatabase />,
-            color: 'text-indigo-600',
             description: 'Data modeling and performance tuning',
             level: 82
         },
         {
             name: 'API Development',
             icon: <FaLayerGroup />,
-            color: 'text-orange-600',
             description: 'RESTful and GraphQL API design',
             level: 90
         },
         {
             name: 'Team Leadership',
             icon: <FaUsers />,
-            color: 'text-red-600',
             description: 'Technical mentoring and project management',
             level: 80
         }
@@ -201,36 +116,28 @@ export default function AboutSection() {
             title: '5+ Years Experience',
             description: 'Full-stack development and DevOps expertise',
             metric: '5+',
-            label: 'Years',
-            color: 'from-blue-500 to-blue-600',
-            count: 5
+            label: 'Years'
         },
         {
             icon: <FaRocket />,
             title: '50+ Projects',
             description: 'Successfully delivered applications and infrastructure',
             metric: '50+',
-            label: 'Projects',
-            color: 'from-green-500 to-green-600',
-            count: 50
+            label: 'Projects'
         },
         {
             icon: <FaCloud />,
             title: 'Cloud Architecture',
             description: 'AWS certified solutions architect',
             metric: '99.9%',
-            label: 'Uptime',
-            color: 'from-orange-500 to-orange-600',
-            count: 99.9
+            label: 'Uptime'
         },
         {
             icon: <FaUsers />,
             title: 'Team Leadership',
             description: 'Led cross-functional development teams',
             metric: '15+',
-            label: 'Developers',
-            color: 'from-purple-500 to-purple-600',
-            count: 15
+            label: 'Developers'
         }
     ]
 
@@ -240,60 +147,54 @@ export default function AboutSection() {
             role: 'Senior DevOps Engineer',
             company: 'Tech Innovations Corp',
             description: 'Leading cloud infrastructure and CI/CD pipelines',
-            type: 'work',
-            color: 'from-blue-500 to-blue-600'
+            type: 'work'
         },
         {
             year: '2023',
             role: 'AWS Solutions Architect',
             company: 'Certification Achievement',
             description: 'Earned AWS Solutions Architect Professional certification',
-            type: 'achievement',
-            color: 'from-orange-500 to-orange-600'
+            type: 'achievement'
         },
         {
             year: '2022',
             role: 'Full-Stack Developer',
             company: 'Digital Solutions Ltd',
             description: 'Built scalable web applications and microservices',
-            type: 'work',
-            color: 'from-green-500 to-green-600'
+            type: 'work'
         },
         {
             year: '2021',
             role: 'DevOps Transformation Lead',
             company: 'TechStartup Inc',
             description: 'Implemented complete CI/CD infrastructure reducing deployment time by 80%',
-            type: 'achievement',
-            color: 'from-purple-500 to-purple-600'
+            type: 'achievement'
         },
         {
             year: '2020',
             role: 'Software Engineer',
             company: 'StartupTech',
             description: 'Developed core platform features and optimized performance',
-            type: 'work',
-            color: 'from-cyan-500 to-cyan-600'
+            type: 'work'
         },
         {
             year: '2019',
             role: 'Computer Science Graduate',
             company: 'University of Technology',
             description: 'Bachelor\'s degree with focus on software engineering',
-            type: 'education',
-            color: 'from-indigo-500 to-indigo-600'
+            type: 'education'
         }
     ]
 
     const interests = [
-        { name: 'Open Source', icon: <FaCode />, color: 'text-blue-600' },
-        { name: 'Cloud Computing', icon: <FaCloud />, color: 'text-sky-600' },
-        { name: 'AI & Machine Learning', icon: <FaLightbulb />, color: 'text-yellow-600' },
-        { name: 'Technical Writing', icon: <FaBook />, color: 'text-green-600' },
-        { name: 'Gaming', icon: <FaGamepad />, color: 'text-purple-600' },
-        { name: 'Photography', icon: <FaCamera />, color: 'text-pink-600' },
-        { name: 'Travel', icon: <FaPlane />, color: 'text-indigo-600' },
-        { name: 'Music Production', icon: <FaMusic />, color: 'text-red-600' }
+        { name: 'Open Source', icon: <FaCode /> },
+        { name: 'Cloud Computing', icon: <FaCloud /> },
+        { name: 'AI & Machine Learning', icon: <FaLightbulb /> },
+        { name: 'Technical Writing', icon: <FaBook /> },
+        { name: 'Gaming', icon: <FaGamepad /> },
+        { name: 'Photography', icon: <FaCamera /> },
+        { name: 'Travel', icon: <FaPlane /> },
+        { name: 'Music Production', icon: <FaMusic /> }
     ]
 
     const personalInfo = [
@@ -308,12 +209,12 @@ export default function AboutSection() {
                 return (
                     <div className="space-y-8">
                         <div className="prose prose-lg max-w-none">
-                            <p className="text-gray-600 leading-relaxed text-lg">
+                            <p className="text-white/90 leading-relaxed text-lg">
                                 I&apos;m a passionate software engineer and DevOps specialist with over 5 years of experience
                                 building scalable applications and robust infrastructure. I love solving complex problems
                                 and transforming ideas into reality through clean, efficient code.
                             </p>
-                            <p className="text-gray-600 leading-relaxed">
+                            <p className="text-white/80 leading-relaxed">
                                 My expertise spans full-stack development, cloud architecture, and modern DevOps practices.
                                 I believe in continuous learning and staying at the forefront of technology to deliver
                                 innovative solutions that make a real impact.
@@ -325,31 +226,26 @@ export default function AboutSection() {
                             {achievements.map((achievement, index) => (
                                 <div
                                     key={index}
-                                    className={`achievement-card relative overflow-hidden p-6 rounded-2xl card-glass border border-white/20 group hover:scale-105 transition-all duration-500 ${animateElements ? 'animate-fade-in-up' : 'opacity-0'
-                                        }`}
-                                    style={{ animationDelay: `${index * 100}ms` }}
+                                    className="relative overflow-hidden p-6 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 group hover:bg-white/15 transition-all duration-300"
                                 >
-                                    {/* Background gradient */}
-                                    <div className={getGradientClass(achievement.color, 'absolute inset-0', 'opacity-0 group-hover:opacity-5 transition-opacity duration-500')}></div>
-
                                     <div className="relative">
                                         <div className="flex items-start justify-between mb-4">
-                                            <div className={getGradientClass(achievement.color, 'text-3xl', 'bg-clip-text text-transparent group-hover:scale-110 transition-transform duration-300')}>
+                                            <div className={`text-3xl ${getHeroGradientClass('text')} group-hover:scale-110 transition-transform duration-300`}>
                                                 {achievement.icon}
                                             </div>
                                             <div className="text-right">
-                                                <div className={getGradientClass(achievement.color, 'text-2xl font-bold', 'bg-clip-text text-transparent')}>
+                                                <div className={`text-2xl font-bold ${getHeroGradientClass('text')}`}>
                                                     {achievement.metric}
                                                 </div>
-                                                <div className="text-xs text-gray-500 uppercase tracking-wide">
+                                                <div className="text-xs text-white/60 uppercase tracking-wide">
                                                     {achievement.label}
                                                 </div>
                                             </div>
                                         </div>
-                                        <h4 className="font-semibold text-gray-900 mb-2 group-hover:text-primary-600 transition-colors duration-300">
+                                        <h4 className="font-semibold text-white mb-2 group-hover:text-cyan-300 transition-colors duration-300">
                                             {achievement.title}
                                         </h4>
-                                        <p className="text-gray-600 text-sm leading-relaxed">
+                                        <p className="text-white/70 text-sm leading-relaxed">
                                             {achievement.description}
                                         </p>
                                     </div>
@@ -358,15 +254,15 @@ export default function AboutSection() {
                         </div>
 
                         {/* Personal Info */}
-                        <div className="mt-8 p-6 rounded-2xl card-glass border border-white/20">
-                            <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Info</h3>
+                        <div className="mt-8 p-6 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20">
+                            <h3 className="text-lg font-semibold text-white mb-4">Quick Info</h3>
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                                 {personalInfo.map((info, index) => (
                                     <div key={index} className="flex items-center space-x-3">
-                                        <div className="text-primary-600">{info.icon}</div>
+                                        <div className="text-cyan-300">{info.icon}</div>
                                         <div>
-                                            <div className="text-xs text-gray-500 uppercase tracking-wide">{info.label}</div>
-                                            <div className="text-gray-900 font-medium">{info.value}</div>
+                                            <div className="text-xs text-white/60 uppercase tracking-wide">{info.label}</div>
+                                            <div className="text-white font-medium">{info.value}</div>
                                         </div>
                                     </div>
                                 ))}
@@ -379,80 +275,65 @@ export default function AboutSection() {
                 return (
                     <div className="space-y-8">
                         <div className="text-center mb-8">
-                            <h3 className="text-2xl font-bold text-gray-900 mb-4">Core Competencies</h3>
-                            <p className="text-gray-600">Key areas of expertise and professional skills</p>
+                            <h3 className="text-2xl font-bold text-white mb-4">Core Competencies</h3>
+                            <p className="text-white/80">Key areas of expertise and professional skills</p>
                         </div>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             {coreCompetencies.map((competency, index) => (
                                 <div
                                     key={competency.name}
-                                    className={`competency-card p-6 rounded-xl card-glass border border-white/20 group hover:scale-105 transition-all duration-300 ${animateElements ? 'animate-fade-in-up' : 'opacity-0'
-                                        }`}
-                                    style={{ animationDelay: `${index * 100}ms` }}
+                                    className="p-6 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 group hover:bg-white/15 transition-all duration-300"
                                 >
                                     <div className="flex items-start space-x-4 mb-4">
-                                        <div className={`text-3xl ${competency.color} group-hover:scale-110 transition-transform duration-300`}>
+                                        <div className="text-3xl text-cyan-300 group-hover:scale-110 transition-transform duration-300">
                                             {competency.icon}
                                         </div>
                                         <div className="flex-1">
-                                            <h4 className="font-semibold text-gray-900 mb-1 group-hover:text-primary-600 transition-colors duration-300">
+                                            <h4 className="font-semibold text-white mb-1 group-hover:text-cyan-300 transition-colors duration-300">
                                                 {competency.name}
                                             </h4>
-                                            <p className="text-gray-600 text-sm">{competency.description}</p>
+                                            <p className="text-white/70 text-sm">{competency.description}</p>
                                         </div>
-                                        <span className="text-sm font-semibold text-gray-600">{competency.level}%</span>
+                                        <span className="text-sm font-semibold text-white/80">{competency.level}%</span>
                                     </div>
 
-                                    {/* Animated Progress Bar */}
-                                    <div className="w-full bg-gray-200 rounded-full h-2 overflow-hidden">
+                                    {/* Progress Bar */}
+                                    <div className="w-full bg-white/20 rounded-full h-2 overflow-hidden">
                                         <div
-                                            className={`h-full ${getProgressGradient(competency.color)} rounded-full transition-all duration-1000 ease-out`}
-                                            style={{
-                                                width: skillBarsAnimated ? `${competency.level}%` : '0%',
-                                                transitionDelay: `${index * 100}ms`
-                                            }}
+                                            className="h-full bg-gradient-to-r from-cyan-400 to-purple-400 rounded-full"
+                                            style={{ width: `${competency.level}%` }}
                                         ></div>
                                     </div>
                                 </div>
                             ))}
                         </div>
 
-                        <div className="mt-12 p-6 rounded-2xl card-glass border border-white/20">
-                            <h4 className="text-lg font-semibold text-gray-900 mb-4 text-center">Technical Approach</h4>
+                        <div className="mt-12 p-6 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20">
+                            <h4 className="text-lg font-semibold text-white mb-4 text-center">Technical Approach</h4>
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                                 <div className="text-center">
-                                    <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white text-xl mx-auto mb-3">
+                                    <div className="w-12 h-12 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full flex items-center justify-center text-white text-xl mx-auto mb-3">
                                         ⚡
                                     </div>
-                                    <h5 className="font-medium text-gray-900 mb-2">Performance First</h5>
-                                    <p className="text-gray-600 text-sm">Optimized code and efficient architectures</p>
+                                    <h5 className="font-medium text-white mb-2">Performance First</h5>
+                                    <p className="text-white/70 text-sm">Optimized code and efficient architectures</p>
                                 </div>
                                 <div className="text-center">
-                                    <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-green-600 rounded-full flex items-center justify-center text-white text-xl mx-auto mb-3">
+                                    <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center text-white text-xl mx-auto mb-3">
                                         🔒
                                     </div>
-                                    <h5 className="font-medium text-gray-900 mb-2">Security Focused</h5>
-                                    <p className="text-gray-600 text-sm">Best practices and secure development</p>
+                                    <h5 className="font-medium text-white mb-2">Security Focused</h5>
+                                    <p className="text-white/70 text-sm">Best practices and secure development</p>
                                 </div>
                                 <div className="text-center">
-                                    <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-purple-600 rounded-full flex items-center justify-center text-white text-xl mx-auto mb-3">
+                                    <div className="w-12 h-12 bg-gradient-to-r from-purple-600 to-cyan-500 rounded-full flex items-center justify-center text-white text-xl mx-auto mb-3">
                                         📱
                                     </div>
-                                    <h5 className="font-medium text-gray-900 mb-2">Mobile First</h5>
-                                    <p className="text-gray-600 text-sm">Responsive and accessible design</p>
+                                    <h5 className="font-medium text-white mb-2">Mobile First</h5>
+                                    <p className="text-white/70 text-sm">Responsive and accessible design</p>
                                 </div>
                             </div>
-                        </div>
-
-                        <div className="mt-12 text-center">
-                            <p className="text-gray-600 mb-6">
-                                Want to see the complete technology stack I work with?
-                            </p>
-                            <button className="btn-secondary group">
-                                <FaDownload className="mr-2 group-hover:animate-bounce" />
-                                View Full Tech Stack
-                            </button>
                         </div>
                     </div>
                 )
@@ -461,56 +342,46 @@ export default function AboutSection() {
                 return (
                     <div className="space-y-8">
                         <div className="text-center mb-8">
-                            <h3 className="text-2xl font-bold text-gray-900 mb-4">Professional Journey</h3>
-                            <p className="text-gray-600">My career path and key milestones</p>
+                            <h3 className="text-2xl font-bold text-white mb-4">Professional Journey</h3>
+                            <p className="text-white/80">My career path and key milestones</p>
                         </div>
 
                         <div className="relative">
-                            {/* Enhanced Timeline line */}
-                            <div className="absolute left-8 top-0 bottom-0 w-1 bg-gradient-to-b from-primary-500 via-secondary-500 to-accent-500 rounded-full"></div>
+                            {/* Timeline line */}
+                            <div className="absolute left-8 top-0 bottom-0 w-1 bg-gradient-to-b from-cyan-400 to-purple-400 rounded-full"></div>
 
                             <div className="space-y-8">
                                 {journey.map((item, index) => (
-                                    <div
-                                        key={index}
-                                        className={`relative flex items-start space-x-6 ${animateElements ? 'animate-fade-in-up' : 'opacity-0'
-                                            }`}
-                                        style={{ animationDelay: `${index * 150}ms` }}
-                                    >
-                                        {/* Enhanced Timeline dot */}
+                                    <div key={index} className="relative flex items-start space-x-6">
+                                        {/* Timeline dot */}
                                         <div className="relative z-10 flex-shrink-0">
-                                            <div className={getGradientClass(item.color, 'w-6 h-6', 'rounded-full ring-4 ring-white shadow-lg flex items-center justify-center')}>
+                                            <div className="w-6 h-6 bg-gradient-to-br from-cyan-500 to-purple-600 rounded-full ring-4 ring-white/20 shadow-lg flex items-center justify-center">
                                                 <div className="w-2 h-2 bg-white rounded-full"></div>
                                             </div>
                                             {item.type === 'achievement' && (
                                                 <div className="absolute -top-1 -right-1">
-                                                    <FaStar className="text-yellow-500 text-sm" />
+                                                    <FaStar className="text-yellow-400 text-sm" />
                                                 </div>
                                             )}
                                         </div>
 
-                                        {/* Enhanced Content */}
-                                        <div className="flex-1 card-glass p-6 rounded-2xl border border-white/20 group hover:scale-[1.02] transition-all duration-300 relative overflow-hidden">
-                                            {/* Background gradient on hover */}
-                                            <div className={getGradientClass(item.color, 'absolute inset-0', 'opacity-0 group-hover:opacity-5 transition-opacity duration-500')}></div>
-
-                                            <div className="relative">
-                                                <div className="flex items-center justify-between mb-3">
-                                                    <span className={getGradientClass(item.color, 'text-sm font-semibold', 'bg-clip-text text-transparent px-3 py-1 rounded-full border border-current border-opacity-20')}>
-                                                        {item.year}
-                                                    </span>
-                                                    <div className="flex items-center space-x-2">
-                                                        {item.type === 'work' && <FaBriefcase className="text-blue-500 text-sm" />}
-                                                        {item.type === 'achievement' && <FaAward className="text-yellow-500 text-sm" />}
-                                                        {item.type === 'education' && <FaGraduationCap className="text-green-500 text-sm" />}
-                                                    </div>
+                                        {/* Content */}
+                                        <div className="flex-1 bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20 group hover:bg-white/15 transition-all duration-300">
+                                            <div className="flex items-center justify-between mb-3">
+                                                <span className={`text-sm font-semibold ${getHeroGradientClass('text')} px-3 py-1 rounded-full border border-cyan-300/30`}>
+                                                    {item.year}
+                                                </span>
+                                                <div className="flex items-center space-x-2">
+                                                    {item.type === 'work' && <FaBriefcase className="text-blue-400 text-sm" />}
+                                                    {item.type === 'achievement' && <FaAward className="text-yellow-400 text-sm" />}
+                                                    {item.type === 'education' && <FaGraduationCap className="text-green-400 text-sm" />}
                                                 </div>
-                                                <h4 className="text-lg font-bold text-gray-900 mb-1 group-hover:text-primary-600 transition-colors duration-300">
-                                                    {item.role}
-                                                </h4>
-                                                <p className={getGradientClass(item.color, 'font-medium mb-3', 'bg-clip-text text-transparent')}>{item.company}</p>
-                                                <p className="text-gray-600">{item.description}</p>
                                             </div>
+                                            <h4 className="text-lg font-bold text-white mb-1 group-hover:text-cyan-300 transition-colors duration-300">
+                                                {item.role}
+                                            </h4>
+                                            <p className={`font-medium mb-3 ${getHeroGradientClass('text')}`}>{item.company}</p>
+                                            <p className="text-white/70">{item.description}</p>
                                         </div>
                                     </div>
                                 ))}
@@ -523,45 +394,43 @@ export default function AboutSection() {
                 return (
                     <div className="space-y-8">
                         <div className="text-center mb-8">
-                            <h3 className="text-2xl font-bold text-gray-900 mb-4">Beyond Code</h3>
-                            <p className="text-gray-600">What drives my passion and creativity</p>
+                            <h3 className="text-2xl font-bold text-white mb-4">Beyond Code</h3>
+                            <p className="text-white/80">What drives my passion and creativity</p>
                         </div>
 
                         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                             {interests.map((interest, index) => (
                                 <div
                                     key={index}
-                                    className={`interest-card p-6 rounded-xl card-glass border border-white/20 text-center group hover:scale-105 transition-all duration-300 ${animateElements ? 'animate-fade-in-up' : 'opacity-0'
-                                        }`}
-                                    style={{ animationDelay: `${index * 100}ms` }}
+                                    className="p-6 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 text-center group hover:bg-white/15 transition-all duration-300"
                                 >
-                                    <div className={`text-3xl mb-3 ${interest.color} group-hover:scale-110 transition-transform duration-300`}>
+                                    <div className="text-3xl mb-3 text-cyan-300 group-hover:scale-110 transition-transform duration-300">
                                         {interest.icon}
                                     </div>
-                                    <p className="font-medium text-gray-900 group-hover:text-primary-600 transition-colors duration-300 text-sm">
+                                    <p className="font-medium text-white group-hover:text-cyan-300 transition-colors duration-300 text-sm">
                                         {interest.name}
                                     </p>
                                 </div>
                             ))}
                         </div>
 
-                        <div className="mt-12 text-center prose prose-lg max-w-none">
-                            <div className="p-8 rounded-2xl card-glass border border-white/20">
-                                <p className="text-gray-600 leading-relaxed mb-6">
+                        <div className="mt-12 text-center">
+                            <div className="p-8 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20">
+                                <p className="text-white/80 leading-relaxed mb-6">
                                     When I&apos;m not coding, you&apos;ll find me contributing to open source projects, exploring new technologies,
                                     or sharing knowledge through technical articles. I believe in giving back to the community that has
                                     helped shape my career.
                                 </p>
-                                <div className="flex flex-wrap justify-center gap-4">
-                                    <span className="px-4 py-2 bg-primary-50 text-primary-700 rounded-full text-sm font-medium">
-                                        🚀 Always Learning
-                                    </span>
-                                    <span className="px-4 py-2 bg-green-50 text-green-700 rounded-full text-sm font-medium">
-                                        🌍 Global Mindset
-                                    </span>
-                                    <span className="px-4 py-2 bg-purple-50 text-purple-700 rounded-full text-sm font-medium">
-                                        💡 Innovation Driven
-                                    </span>
+                                <div className="flex justify-center space-x-3">
+                                    <button className="w-10 h-10 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white flex items-center justify-center hover:scale-110 transition-transform duration-300 shadow-lg">
+                                        <FaLinkedin className="text-sm" />
+                                    </button>
+                                    <button className="w-10 h-10 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 text-white flex items-center justify-center hover:scale-110 transition-transform duration-300 shadow-lg">
+                                        <FaGithub className="text-sm" />
+                                    </button>
+                                    <button className="w-10 h-10 rounded-full bg-gradient-to-r from-purple-600 to-cyan-500 text-white flex items-center justify-center hover:scale-110 transition-transform duration-300 shadow-lg">
+                                        <FaEnvelope className="text-sm" />
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -577,96 +446,68 @@ export default function AboutSection() {
         <section
             id="about"
             ref={sectionRef}
-            className="py-20 bg-gradient-to-br from-surface-50 via-white to-primary-50/30 relative overflow-hidden"
+            className="py-20 bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 relative overflow-hidden"
         >
-            {/* Background decoration */}
-            <div className="absolute inset-0 bg-grid-slate-100 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.6))] -z-10"></div>
-            <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-gradient-to-r from-primary-400/20 to-secondary-400/20 rounded-full blur-3xl -z-10"></div>
-            <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-accent-400/20 to-primary-400/20 rounded-full blur-3xl -z-10"></div>
+            {/* Background decoration with hero-style elements */}
+            <div className="absolute inset-0 opacity-10">
+                <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-gradient-to-r from-cyan-400/30 to-blue-400/30 rounded-full blur-3xl"></div>
+                <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-purple-400/30 to-blue-400/30 rounded-full blur-3xl"></div>
+            </div>
 
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 {/* Section Header */}
-                <div className={`text-center mb-16 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}>
-                    <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                <div className="text-center mb-16">
+                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
                         About{' '}
-                        <span className="bg-gradient-to-r from-primary-600 via-secondary-600 to-accent-600 bg-clip-text text-transparent">
+                        <span className={getHeroGradientClass('text')}>
                             Me
                         </span>
                     </h2>
-                    <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                    <p className="text-xl text-white/80 max-w-3xl mx-auto leading-relaxed">
                         Passionate software engineer crafting digital experiences with modern technologies
                     </p>
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-                    {/* Enhanced Profile Card */}
-                    <div className={`lg:col-span-1 ${isVisible ? 'animate-fade-in-left' : 'opacity-0'}`}>
-                        <div className="card-glass rounded-3xl p-8 border border-white/20 sticky top-24 relative overflow-hidden">
-                            {/* Background decorations */}
-                            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary-400/10 to-secondary-400/10 rounded-full blur-2xl"></div>
-                            <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-accent-400/10 to-primary-400/10 rounded-full blur-xl"></div>
-
-                            <div className="text-center relative z-10">
-                                <div className="relative inline-block mb-6">
-                                    <div className="w-32 h-32 rounded-full bg-gradient-to-br from-primary-500 via-secondary-500 to-accent-500 p-1 shadow-2xl">
-                                        <div className="w-full h-full rounded-full bg-white flex items-center justify-center">
-                                            <div className="w-28 h-28 rounded-full bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center relative overflow-hidden">
-                                                <span className="text-4xl font-bold bg-gradient-to-br from-primary-600 to-secondary-600 bg-clip-text text-transparent">IO</span>
-                                                {/* Subtle animation overlay */}
-                                                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    {/* Status indicator */}
-                                    <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-green-500 rounded-full border-4 border-white flex items-center justify-center shadow-lg">
-                                        <div className="w-3 h-3 bg-white rounded-full animate-pulse"></div>
+                    {/* Profile Card */}
+                    <div className="lg:col-span-1">
+                        <div className="bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20 sticky top-24 relative overflow-hidden">
+                            <div className="text-center">
+                                <div className="w-32 h-32 mx-auto mb-6 rounded-full bg-gradient-to-br from-cyan-400 to-purple-600 p-1">
+                                    <div className="w-full h-full rounded-full bg-slate-800 flex items-center justify-center text-6xl">
+                                        👨‍💻
                                     </div>
                                 </div>
-
-                                <h3 className="text-2xl font-bold text-gray-900 mb-2">Imane Ouazzani Chahdi</h3>
-                                <p className="text-primary-600 font-medium mb-2">Software Engineer & DevOps</p>
-                                <p className="text-gray-600 text-sm mb-6 leading-relaxed">
-                                    Building the future, one line of code at a time
+                                <h3 className="text-2xl font-bold text-white mb-2">Imane Ouazzani</h3>
+                                <p className={`text-lg ${getHeroGradientClass('text')} mb-4`}>
+                                    Software Engineer & DevOps
                                 </p>
-
-                                {/* Social Links */}
-                                <div className="flex justify-center space-x-3 mb-6">
-                                    <button className="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-blue-600 text-white flex items-center justify-center hover:scale-110 transition-transform duration-300 shadow-lg">
-                                        <FaLinkedin className="text-sm" />
-                                    </button>
-                                    <button className="w-10 h-10 rounded-full bg-gradient-to-r from-gray-700 to-gray-900 text-white flex items-center justify-center hover:scale-110 transition-transform duration-300 shadow-lg">
-                                        <FaGithub className="text-sm" />
-                                    </button>
-                                    <button className="w-10 h-10 rounded-full bg-gradient-to-r from-red-500 to-red-600 text-white flex items-center justify-center hover:scale-110 transition-transform duration-300 shadow-lg">
-                                        <FaEnvelope className="text-sm" />
-                                    </button>
+                                <div className="inline-flex items-center px-3 py-1 bg-green-500/20 rounded-full border border-green-400/30 text-green-300 text-sm mb-6">
+                                    <div className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></div>
+                                    Available for hire
                                 </div>
-
-                                <button className="btn-primary w-full group">
-                                    <span>Let&apos;s Connect</span>
-                                    <FaArrowRight className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
-                                </button>
                             </div>
                         </div>
                     </div>
 
                     {/* Content Area */}
-                    <div className={`lg:col-span-3 ${isVisible ? 'animate-fade-in-right' : 'opacity-0'}`}>
-                        {/* Enhanced Tab Navigation */}
-                        <div className="flex flex-wrap gap-2 mb-8 p-1 bg-white/50 backdrop-blur-sm rounded-2xl border border-white/20 shadow-lg">
+                    <div className="lg:col-span-3">
+                        {/* Tab Navigation */}
+                        <div className="flex flex-wrap gap-2 mb-8 p-1 bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20">
                             {tabs.map((tab) => (
                                 <button
                                     key={tab.id}
                                     onClick={() => setActiveTab(tab.id)}
-                                    className={`flex items-center space-x-2 px-6 py-3 rounded-xl font-medium transition-all duration-300 relative overflow-hidden ${activeTab === tab.id
-                                        ? 'bg-white text-primary-600 shadow-lg scale-105'
-                                        : 'text-gray-600 hover:text-primary-600 hover:bg-white/50'
-                                        }`}
+                                    className={`flex items-center space-x-2 px-6 py-3 rounded-xl font-medium transition-all duration-300 relative overflow-hidden ${
+                                        activeTab === tab.id
+                                            ? 'bg-white/20 text-white shadow-lg scale-105'
+                                            : 'text-white/70 hover:text-white hover:bg-white/10'
+                                    }`}
                                 >
                                     {activeTab === tab.id && (
-                                        <div className={getGradientClass(tab.color, 'absolute inset-0', 'opacity-5 rounded-xl')}></div>
+                                        <div className="absolute inset-0 bg-gradient-to-r from-cyan-400/20 to-purple-400/20 rounded-xl"></div>
                                     )}
-                                    <span className={`text-lg relative z-10 ${activeTab === tab.id ? getGradientClass(tab.color, '', 'bg-clip-text text-transparent', 'bg-gradient-to-r') : ''}`}>
+                                    <span className={`text-lg relative z-10 ${activeTab === tab.id ? getHeroGradientClass('text') : ''}`}>
                                         {tab.icon}
                                     </span>
                                     <span className="relative z-10">{tab.label}</span>
@@ -674,9 +515,9 @@ export default function AboutSection() {
                             ))}
                         </div>
 
-                        {/* Enhanced Tab Content */}
+                        {/* Tab Content */}
                         <div className="min-h-[600px] relative">
-                            <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/40 to-white/10 backdrop-blur-sm"></div>
+                            <div className="absolute inset-0 rounded-2xl bg-white/5 backdrop-blur-sm"></div>
                             <div className="relative z-10 p-6">
                                 {renderTabContent()}
                             </div>
